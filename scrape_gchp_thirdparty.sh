@@ -1,9 +1,13 @@
 #!/bin/bash
 
 # Check that this looks like the GCHP directory
-[ ! -d Shared/Linux ] && echo "This doesn't look like the GCHP directory!" && exit 1
-[ ! -d ESMF/Linux ] && echo "This doesn't look like the GCHP directory!" && exit 1
-[ ! -d Registry ] && echo "This doesn't look like the GCHP directory!" && exit 1
+check_dir_exists() {
+	DIR=$1
+	[ ! -d $DIR ] && echo "error: This doesn't look like the GCHP directory! $DIR doesn't exist." && exit 1
+}
+check_dir_exists "Shared/Linux"
+check_dir_exists "ESMF/Linux"
+check_dir_exists "Registry"
 
 set -x
 set -e
